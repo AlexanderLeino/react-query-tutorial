@@ -2,10 +2,10 @@ import React from 'react'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 export const RQSuperHeroes = () => {
-  const {isLoading , data } = useQuery('super-heroes', () => {
-  return axios.get('http://localhost:4000/superheroes')
+  const {isLoading , data } = useQuery(['super-heroes'], () => {
+    return axios.get('http://localhost:4000/superheroes')
   })
-
+  console.log(data)
 
 
   return (
