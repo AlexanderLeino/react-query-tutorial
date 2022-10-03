@@ -10,7 +10,7 @@ import {
   QueryClient,
   QueryClientProvider
 } from '@tanstack/react-query'
-
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import logo from './logo.svg';
 import './App.css';
 
@@ -50,6 +50,7 @@ function App() {
 
       </div>
     </Router>
+    <ReactQueryDevtools initialIsOpen={false} position='bottom-right'/>
   </QueryClientProvider>
   );
 }
