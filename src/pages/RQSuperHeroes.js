@@ -1,13 +1,27 @@
-import React from 'react'
-import { useQuery } from '@tanstack/react-query'
+import React, {useEffect, useState} from 'react'
+import { useAddSuperHeroData, useSuperHeroesData } from '../hooks/useSuperHeroesData'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 
-const fetchSuperHeroes = () => {
-  return axios.get('http://localhost:4000/superheroes')
-}
+
+
 
 export const RQSuperHeroes = () => {
+  const [superHero, setSuperHero] = useState({})
+  const { mutate } = useAddSuperHeroData()
+  
+  const handleOnChange = (e) => {
+    let name = e.target.name 
+    let value = e.target.value
+
+    setSuperHero({...superHero, [name]: value})
+  
+  }
+
+  const handleOnClick = () => {
+      mutate(superHero)
+  }
 
   const onSuccess = () => {
     console.log('Perform side effect after data Fetching')
@@ -17,22 +31,19 @@ export const RQSuperHeroes = () => {
     console.log('Encountering error')
   }
 
-  const {isLoading , data, isError, error , isFetching, refetch} = useQuery(['super-heroes'], fetchSuperHeroes, {
-    staleTime: 1000,
-    enabled: false,
-    onSuccess,
-    onError,
-    select: (data) => {
-      const superHeroNames = data?.data.map(superHero => superHero.name)
-      return superHeroNames
-    }
-   
-  })
+  const {isLoading , data, isError, error , isFetching, refetch} = useSuperHeroesData(onSuccess, onError)
   
   return (
    <>
    <h2>RQ SUPER HEROES PAGE</h2>
-   <button onClick={refetch}>Fetch Heroes</button>
+   <div>
+    <input name='name' onChange={handleOnChange} value={superHero.name || ''}/>
+    <input name='alterEgo' onChange={handleOnChange} value={superHero.alterEgo || ''}/>
+   </div>
+  <div style={{display: 'flex', flexDirection: 'column', width: 'fit-content'}}>
+   <button onClick={handleOnClick} style={{color:'black', backgroundColor: 'coral'}}>Create Hero</button>
+   <button onClick={refetch} style={{backgroundColor: 'lightBlue', marginTop: '10px'}}>Fetch Heroes</button>
+  </div>
    {isLoading || isFetching 
       ? 
       <div>Loading...</div> 
@@ -44,8 +55,8 @@ export const RQSuperHeroes = () => {
       {/* {data?.data.map((hero) => {
         return <div key={hero.name}>{hero.name}</div>
       })} */}
-      {data.map((heroName) => {
-        return <div key={heroName}>{heroName}</div>
+      {data?.data.map((hero) => {
+        return <Link to={`/super-heroes/${hero.id}`}><div key={hero.name}>{hero.name}</div></Link>
       })}
 
       </>

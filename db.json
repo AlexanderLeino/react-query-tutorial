@@ -1,19 +1,59 @@
 {
-    "superheroes": [
-        {
-            "id": 1,
-            "name": "Batman",
-            "alterego": "Bruce Wayne"
-        },
-        {
-            "id": 2,
-            "name": "Superman",
-            "alterego": "Clark Kent"
-        },
-        {
-            "id": 3,
-            "name": "Wonder Woman 1",
-            "alterego": "Princess Diana"
-        }
-    ]
+  "superheroes": [
+    {
+      "id": 1,
+      "name": "Batman",
+      "alterEgo": "Bruce Wayne"
+    },
+    {
+      "id": 2,
+      "name": "Superman",
+      "alterEgo": "Clark Kent"
+    },
+    {
+      "id": 3,
+      "name": "Wonder Woman 1",
+      "alterEgo": "Princess Diana"
+    },
+    {
+      "name": "Vince ",
+      "alterEgo": "Young",
+      "id": 4
+    },
+    {
+      "name": "Aqua Man",
+      "alterEgo": "Sea Tutrle",
+      "id": 5
+    }
+  ],
+  "friends": [
+    {
+      "id": 1,
+      "name": "Barney"
+    },
+    {
+      "id": 2,
+      "name": "Marshall"
+    },
+    {
+      "id": 3,
+      "name": "Ted"
+    }
+  ],
+  "users": [
+    {
+      "id": "Alexander.Leino@yahoo.com",
+      "channelId": "AlexSnow"
+    }
+  ],
+  "channnels": [
+    {
+      "id": "AlexSnow",
+      "courses": [
+        "react",
+        "vue",
+        "angular"
+      ]
+    }
+  ]
 }
